@@ -90,6 +90,12 @@ async def make_order(files: List[UploadFile] = File(...),
     # 반복적이고 공통적인 로직이 필요할 때 사용할 수 있음
     # 모델을 Load, Config Load
     # async, Depends 검색해서 또 학습해보기!
+    '''이전까지 모델 예측할 때 익숙한 패턴
+    model = load_model()
+    config = load_config()
+    image
+    predict(image, model, config)
+    '''
     products = []
     for file in files:
         image_bytes = await file.read()
