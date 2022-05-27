@@ -6,7 +6,7 @@
 
 - Docker Image 찾는 방법
     - 1) 공식 문서에 있는 확인한다 : 만약 존재하면 사용한다
-    - 2) 공식 문서에 Docker Image가 없다면, 찾아본다
+    - 2) 공식 문서에 Docker Image가 없다면, 찾아본다 # 구글에 mlflow docker image https://hub.docker.com/r/jiankaiwang/mlflow
         - ㄱ) Github Repo에 유저들이 만든 것이 있는지 확인
         - ㄴ) Docker Hub에 유저들이 만든 것이 있는지 확인
         - ㄷ) 직접 Docker Image를 생성
@@ -50,6 +50,7 @@ mlflow                                    1.24.0            072b9199e5d1   2 min
 
 ```bash
 $ docker run --name mlflow -p 5000:5000 -v $(pwd):/mlflow --rm mlflow:1.24.0
+# docker run --name mlflow -p 5000:5000 -v "${pwd}":/mlflow --rm mlflow:1.24.0
 
 [2022-04-09 06:28:13 +0000] [12] [INFO] Starting gunicorn 20.1.0
 [2022-04-09 06:28:13 +0000] [12] [INFO] Listening at: http://0.0.0.0:5000 (12)
