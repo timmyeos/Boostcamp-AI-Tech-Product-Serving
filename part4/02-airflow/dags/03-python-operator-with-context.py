@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 # Airflow는 Batch 성으로 특정 시간대로 실행하는 도구인데, 위와 같이 now 등을 사용하면 실행하는 시점 기준으로 실행이 됩니다(원래 기대했던 실행 시점이 아닌, 동작 시점)
 # Airflow는 항상 현재 최신 작업만 실행하는 것은 아니고, 과거 날짜를 실행해야 하는 경우도 있음(Backfill이란 용어 사용)
 # 따라서 코드 상에서 now(), SQL 상에서 current_date() 등을 사용하지 않고, Airflow에서 실행하기로 했던 시간을 넣어줘야 합니다
-# execution_date라고 부름
+# execution_date라고 부름 (실행하기로 했던 시간)
 
 default_args = {
     'owner': 'kyle',
@@ -19,7 +19,7 @@ default_args = {
 
 
 def print_current_date_with_context_variable(*args, **kwargs):
-    """
+    """kwargs
     {'conf': <airflow.configuration.AirflowConfigParser object at 0x1069e8b00>,
     'dag': <DAG: python_dag_with_context>,
     'dag_run': <DagRun python_dag_with_context @ 2022-04-20 00:30:00+00:00: scheduled__2022-04-20T00:30:00+00:00,

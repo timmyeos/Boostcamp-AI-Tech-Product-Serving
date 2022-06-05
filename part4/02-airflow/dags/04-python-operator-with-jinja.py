@@ -39,7 +39,7 @@ with DAG(
     python_task_jinja = PythonOperator(
         task_id='print_current_date_with_jinja',
         python_callable=print_current_date_with_jinja,
-        op_args=[execution_date]
+        op_args=[execution_date]    ### argument 주입 / rendered에서 확인 가능
     )
 
     python_task_jinja

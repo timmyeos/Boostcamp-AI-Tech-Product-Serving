@@ -16,8 +16,8 @@ def print_world() -> None:
 with DAG(
     dag_id="hello_world",  # DAG의 식별자용 아이디입니다.
     description="My First DAG",  # DAG에 대해 설명합니다.
-    start_date=days_ago(2),  # DAG 정의 기준 2일 전부터 시작합니다.
-    schedule_interval="0 6 * * *",  # 매일 06:00에 실행합니다.
+    start_date=days_ago(2),  # DAG 정의 기준 2일 전부터 시작합니다. 언제부터 시작할 것인지
+    schedule_interval="0 6 * * *",  # 매일 06:00에 실행합니다. 스케쥴링 간격 크론탭 표현
     tags=["my_dags"],  # 태그 목록을 정의합니다. 추후에 DAG을 검색하는데 용이합니다.
 ) as dag:
 
@@ -35,7 +35,7 @@ with DAG(
     # python 함수인 print_world를 실행합니다.
     t2 = PythonOperator(
         task_id="print_world",
-        python_callable=print_world,
+        python_callable=print_world, ### 위에 정의된 함수. 괄호 없음!!!
         depends_on_past=True,
         owner="heumsi",
         retries=3,

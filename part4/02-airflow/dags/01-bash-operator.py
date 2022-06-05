@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 
-default_args = {
+default_args = {    # 항상 DAG 만들 때 주입시켜주는 인자
     'owner': 'kyle',
     'depends_on_past': False,  # 이전 DAG의 Task가 성공, 실패 여부에 따라 현재 DAG 실행 여부가 결정. False는 과거의 실행 결과 상관없이 매일 실행한다
     'start_date': datetime(2022, 4, 20),
@@ -20,7 +20,7 @@ default_args = {
 with DAG(
         dag_id='bash_dag',
         default_args=default_args,
-        schedule_interval='@once',
+        schedule_interval='@once',  # DAG을 어떤 주기로 실행, 크론표현식
         tags=['my_dags']
 ) as dag:
     # BashOperator 사용
@@ -31,7 +31,7 @@ with DAG(
 
     task2 = BashOperator(
         task_id='sleep',
-        bash_command='sleep 5',
+        bash_command='sleep 5', # 5초 동안 쉬겠다
         retries=2  # 만약 bash command가 실패하면 2번 재시도한다
     )
 
@@ -42,3 +42,6 @@ with DAG(
 
     task1 >> task2  # task1 이후에 task2 실행
     task1 >> task3  # task1 이후에 task3 실행(2와 3을 병렬로 실행)
+    ### db 부하 덜 주려고 스케쥴러는 5분마다 스캔
+    ### 재실행하고 싶으면 DAG run의 clear 누르면 그 시간에 실행하기로 했던 작업들 다시 실행됨
+    
