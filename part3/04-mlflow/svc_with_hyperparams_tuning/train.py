@@ -7,6 +7,7 @@ def main():
     mlflow.sklearn.autolog()
 
     iris = datasets.load_iris()
+    ############## autolog와 hyperparameter tuning 같이!!!
     parameters = {"kernel": ("linear", "rbf"), "C": [1, 10]}
     svc = svm.SVC()
     clf = GridSearchCV(svc, parameters)

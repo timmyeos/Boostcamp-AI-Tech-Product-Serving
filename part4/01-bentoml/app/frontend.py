@@ -33,7 +33,7 @@ def main():
             ('files', (uploaded_file.name, image_bytes,
                        uploaded_file.type))
         ]
-        response = requests.post("http://localhost:5000/predict", files=files)
+        response = requests.post("http://localhost:5001/predict", files=files)
         label = response.json()
         st.write(f'label is {label}')
 

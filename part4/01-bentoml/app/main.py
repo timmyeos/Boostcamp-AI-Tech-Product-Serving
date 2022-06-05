@@ -49,6 +49,7 @@ class MyEfficientNet(nn.Module):
         return x
 
 
+### bento sevice
 @env(infer_pip_packages=True)
 @artifacts([PytorchModelArtifact("model")])
 class MaskAPIService(BentoService):
@@ -65,6 +66,7 @@ class MaskAPIService(BentoService):
     def get_label_from_class(self, class_: int):
         return classes[class_]
 
+    ### input은 업로드된 이미지, output은 json으로 클라이언트에 제공
     @api(input=ImageInput(), output=JsonOutput())
     def predict(self, image_array: Array):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -75,6 +77,7 @@ class MaskAPIService(BentoService):
         return self.get_label_from_class(class_=y_hats.item())
 
 
+### model packing
 if __name__ == "__main__":
     import torch
 

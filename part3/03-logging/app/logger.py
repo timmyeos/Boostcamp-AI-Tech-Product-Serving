@@ -113,8 +113,8 @@ if __name__ == "__main__":
 
     logger = get_ml_logger(
         config_path=config_yaml_path,
-        credential_json_path="서비스 계정 JSON 파일 경로",  # FIXME
-        table_ref="빅쿼리 테이블 주소",  # FIXME: e.g., boostcamp-ai-tech-serving.online_serving_logs.mask_classification
+        credential_json_path= '/opt/ml/Boostcamp-AI-Tech-Product-Serving/part3/03-logging/app/complete-stock-350801-b3b45c3fe7cf.json' , # "서비스 계정 JSON 파일 경로",  # FIXME
+        table_ref= 'complete-stock-350801.online_serving_logs.mask_classification', # "빅쿼리 테이블 주소",  # FIXME: e.g., boostcamp-ai-tech-serving.online_serving_logs.mask_classification
     )
     for _ in range(10):
         logger.info("hello world")

@@ -14,7 +14,7 @@ default_args = {
 # 사용할 함수 정의
 def print_current_date():
     date_kor = ["월", "화", "수", "목", "금", "토", "일"]
-    date_now = datetime.now().date()
+    date_now = datetime.now().date()    # now를 실행했기때문에 실행하는 기준을 받아서 로그 나옴. 실제로 동작할 땐 start_date에 있는 그런 것들 받아서 해야 함!
     datetime_weeknum = date_now.weekday()
     print(f"{date_now}는 {date_kor[datetime_weeknum]}요일입니다")
 
